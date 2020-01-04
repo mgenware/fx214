@@ -4,7 +4,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "target": "ES2018",
+    "target": "ES6",
     "declaration": true,
     "strict": true,
     "noUnusedLocals": true,
