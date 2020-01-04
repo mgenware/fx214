@@ -1,0 +1,46 @@
+{
+  "name": "fx214",
+  "version": "0.0.0",
+  "description": "Hierarchical URL constants in less code",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "author": "Mgen (https://www.mgenware.com)",
+  "homepage": "https://github.com/mgenware/fx214",
+  "bugs": "https://github.com/mgenware/fx214/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgenware/fx214.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run t",
+    "t": "mocha --require source-map-support/register dist_tests/**/*.test.js",
+    "build": "cross-env NODE_ENV=production yarn test",
+    "compile": "tsc -b tests",
+    "dev": "cross-env NODE_ENV=development yarn run clean && tsc -b tests -w",
+    "prepublishOnly": "yarn run test",
+    "lint": "eslint --max-warnings 0 --ext .ts src/ tests/",
+    "clean": "del-cli dist && del-cli dist_tests"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "files": [
+    "/dist/**/*.js",
+    "/dist/**/*.ts",
+    "/dist/**/*.css",
+    "/dist/**/*.map"
+  ],
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^13.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "cross-env": "^6.0.3",
+    "del-cli": "^3.0.0",
+    "eslint": "^6.8.0",
+    "mocha": "^6.2.2",
+    "source-map-support": "^0.5.16",
+    "typescript": "^3.7.4"
+  }
+}
