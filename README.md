@@ -16,6 +16,8 @@ yarn add fx214
 ## Usage
 
 ```ts
+import buildTree from 'fx214';
+
 const urls = buildTree({
   api: {
     private: {
