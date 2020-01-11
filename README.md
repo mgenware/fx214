@@ -1,7 +1,7 @@
 # fx214
 
 [![MEAN Module](https://img.shields.io/badge/MEAN%20Module-TypeScript-blue.svg?style=flat-square)](https://github.com/mgenware/MEAN-Module)
-[![Build Status](https://img.shields.io/travis/mgenware/fx214.svg?style=flat-square&label=Build+Status)](https://travis-ci.org/mgenware/fx214)
+[![Build Status](https://github.com/mgenware/fx214/workflows/Build/badge.svg)](https://github.com/mgenware/fx214/actions)
 [![npm version](https://img.shields.io/npm/v/fx214.svg?style=flat-square)](https://npmjs.com/package/fx214)
 [![Node.js Version](http://img.shields.io/node/v/fx214.svg?style=flat-square)](https://nodejs.org/en/)
 
