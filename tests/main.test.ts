@@ -42,3 +42,7 @@ it('Multiple levels', () => {
     },
   );
 });
+
+it('Non-object', () => {
+  assert.deepEqual(buildTree('abc'), 'abc');
+});
