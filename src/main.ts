@@ -10,8 +10,10 @@ function buildTreeCore(tree: unknown, prefix: string): unknown {
   for (const [key, val] of Object.entries(tree as Record<string, unknown>)) {
     if (isObject(val)) {
       res[key] = buildTreeCore(val, `${prefix}/${key}`);
-    } else {
+    } else if (typeof val === 'string') {
       res[key] = `${prefix}/${val}`;
+    } else {
+      res[key] = val;
     }
   }
   return res;

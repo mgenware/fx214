@@ -46,3 +46,21 @@ it('Multiple levels', () => {
 it('Non-object', () => {
   assert.deepEqual(buildTree('abc'), 'abc');
 });
+
+it('Ignore non-string leaves', () => {
+  const f = () => 's';
+  assert.deepEqual(
+    buildTree({
+      a: {
+        b: 'haha',
+        c: f,
+      },
+    }),
+    {
+      a: {
+        b: '/a/haha',
+        c: f,
+      },
+    },
+  );
+});
