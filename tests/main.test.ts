@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import buildTree from '..';
 
 it('One level', () => {
-  assert.deepEqual(
+  assert.deepStrictEqual(
     buildTree({
       a: 'aaa',
       b: 'bbb',
@@ -15,7 +15,7 @@ it('One level', () => {
 });
 
 it('Multiple levels', () => {
-  assert.deepEqual(
+  assert.deepStrictEqual(
     buildTree({
       a: 'aaa',
       b: 'bbb',
@@ -44,12 +44,12 @@ it('Multiple levels', () => {
 });
 
 it('Non-object', () => {
-  assert.deepEqual(buildTree('abc'), 'abc');
+  assert.deepStrictEqual(buildTree('abc'), 'abc');
 });
 
 it('Ignore non-string leaves', () => {
   const f = () => 's';
-  assert.deepEqual(
+  assert.deepStrictEqual(
     buildTree({
       a: {
         b: 'haha',
@@ -60,6 +60,29 @@ it('Ignore non-string leaves', () => {
       a: {
         b: '/a/haha',
         c: f,
+      },
+    },
+  );
+});
+
+it('Customize content strings', () => {
+  assert.deepStrictEqual(
+    buildTree({
+      a: {
+        forum: {
+          add: 'add',
+          del: 'delete',
+          __content__: '<>',
+        },
+      },
+    }),
+    {
+      a: {
+        forum: {
+          add: '/a/<>/add',
+          del: '/a/<>/delete',
+          __content__: '<>',
+        },
       },
     },
   );
