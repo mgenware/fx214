@@ -40,4 +40,28 @@ const urls = buildTree({
 */
 ```
 
-For TypeScript, type information is not lost after calling `buildTree`, you can continue to use something like `urls.api.private.newPost` with autocomplete support to access an individual item.
+To customize the value of a URL component, use the special `__content__` property:
+
+```ts
+const urls = buildTree({
+  api: {
+    p: {
+      __content__: 'private',
+      newComment: 'new-comment',
+      newPost: 'new-post',
+    },
+  },
+});
+
+// `urls` will be like:
+/**
+{
+  api: {
+    p: {
+      newComment: '/api/private/new-comment',
+      newPost: '/api/private/new-post',
+    },
+  },
+}
+*/
+```
