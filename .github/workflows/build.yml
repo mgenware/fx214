@@ -26,4 +26,4 @@ jobs:
           node-version: ${{ matrix.node_version }}
           architecture: ${{ matrix.architecture }}
       - run: yarn
-      - run: yarn test
+      - run: yarn r build

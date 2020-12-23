@@ -1,16 +1,9 @@
 module.exports = {
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  extends: [
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-  ],
+  parser: '@typescript-eslint/parser',
+  extends: ['airbnb-typescript-lite', 'plugin:@typescript-eslint/recommended', 'mgenware'],
   parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
-  },
-  rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    'no-console': ['error', { allow: ['warn', 'error'] }],
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    project: './tsconfig.json',
   },
 };

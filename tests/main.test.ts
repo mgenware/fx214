@@ -1,5 +1,5 @@
-import buildTree from '../';
 import * as assert from 'assert';
+import buildTree from '..';
 
 it('One level', () => {
   assert.deepEqual(

@@ -4,11 +4,15 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "target": "ES6",
+    "target": "es2018",
+    "lib": ["es2018"],
     "declaration": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "newLine": "lf"
   }
 }
