@@ -1,5 +1,6 @@
+/* eslint-disable import/extensions */
 import * as assert from 'assert';
-import buildTree from '..';
+import buildTree from '../dist/main.js';
 
 it('One level', () => {
   assert.deepStrictEqual(
