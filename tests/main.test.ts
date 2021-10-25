@@ -84,3 +84,14 @@ it('Customize content strings', () => {
     },
   );
 });
+
+it('Keep input type', () => {
+  const input = {
+    a: 'aaa',
+    b: 'bbb',
+  };
+  const res = buildTree(input);
+  // Must access one of properties of `input`.
+  // It compiles if `res` has the same type of `input`.
+  assert.strictEqual(res.a, '/aaa');
+});

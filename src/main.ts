@@ -22,6 +22,6 @@ function buildTreeCore(tree: Record<string, unknown>, prefix: string): Record<st
   return res;
 }
 
-export default function buildTree(tree: Record<string, unknown>): Record<string, unknown> {
-  return buildTreeCore(tree, '');
+export default function buildTree<T extends Record<string, unknown>>(tree: T): T {
+  return buildTreeCore(tree, '') as T;
 }
