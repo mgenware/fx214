@@ -4,17 +4,15 @@ function isObject(val: unknown): boolean {
   return typeof val === 'object' && val !== null;
 }
 
-function buildTreeCore(tree: unknown, prefix: string): unknown {
+function buildTreeCore(tree: Record<string, unknown>, prefix: string): Record<string, unknown> {
   if (!isObject(tree)) {
     return tree;
   }
   const res: Record<string, unknown> = {};
-  for (const [key, val] of Object.entries(tree as Record<string, unknown>)) {
+  for (const [key, val] of Object.entries(tree)) {
     if (isObject(val)) {
-      res[key] = buildTreeCore(
-        val,
-        `${prefix}/${(val as Record<string, unknown>)[contentAttr] ?? key}`,
-      );
+      const valAsObj = val as Record<string, unknown>;
+      res[key] = buildTreeCore(valAsObj, `${prefix}/${valAsObj[contentAttr] ?? key}`);
     } else if (typeof val === 'string' && key !== contentAttr) {
       res[key] = `${prefix}/${val}`;
     } else {
@@ -24,6 +22,6 @@ function buildTreeCore(tree: unknown, prefix: string): unknown {
   return res;
 }
 
-export default function buildTree<T>(tree: T): T {
-  return buildTreeCore(tree, '') as T;
+export default function buildTree(tree: Record<string, unknown>): Record<string, unknown> {
+  return buildTreeCore(tree, '');
 }
