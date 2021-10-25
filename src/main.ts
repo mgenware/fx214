@@ -13,8 +13,9 @@ function buildTreeCore(tree: Record<string, unknown>, prefix: string): Record<st
     if (isObject(val)) {
       const valAsObj = val as Record<string, unknown>;
       res[key] = buildTreeCore(valAsObj, `${prefix}/${valAsObj[contentAttr] ?? key}`);
-    } else if (typeof val === 'string' && key !== contentAttr) {
-      res[key] = `${prefix}/${val}`;
+    } else if (key !== contentAttr && typeof val !== 'function') {
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      res[key] = `${prefix}/${val || key}`;
     } else {
       res[key] = val;
     }

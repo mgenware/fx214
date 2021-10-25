@@ -95,3 +95,30 @@ it('Keep input type', () => {
   // It compiles if `res` has the same type of `input`.
   assert.strictEqual(res.a, '/aaa');
 });
+
+it('Autofill falsy values', () => {
+  assert.deepStrictEqual(
+    buildTree({
+      a: {
+        forum: {
+          add: 'add',
+          b: 0,
+          c: null,
+          d: '',
+          __content__: '<>',
+        },
+      },
+    }),
+    {
+      a: {
+        forum: {
+          add: '/a/<>/add',
+          b: '/a/<>/b',
+          c: '/a/<>/c',
+          d: '/a/<>/d',
+          __content__: '<>',
+        },
+      },
+    },
+  );
+});

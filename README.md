@@ -65,3 +65,28 @@ const urls = buildTree({
 }
 */
 ```
+
+Falsy values are automatically filled with key names:
+
+```ts
+const urls = buildTree({
+  api: {
+    p: {
+      add: 0,
+      remove: null,
+    },
+  },
+});
+
+// `urls` will be like:
+/**
+{
+  api: {
+    p: {
+      newComment: '/api/private/add',
+      newPost: '/api/private/remove',
+    },
+  },
+}
+*/
+```
