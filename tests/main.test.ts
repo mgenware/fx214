@@ -127,24 +127,26 @@ it('opt.underscoresToHyphens', () => {
   assert.deepStrictEqual(
     buildTree(
       {
-        a: {
+        // Key names are also replaced.
+        a_b: {
           forum: {
             add: 'add',
             remove: 'remove_item',
             set_item: 0,
-            __content__: '<>',
+            // `__content__` is not affected by `underscoresToHyphens`.
+            __content__: '__',
           },
         },
       },
       { underscoresToHyphens: true },
     ),
     {
-      a: {
+      a_b: {
         forum: {
-          add: '/a/<>/add',
-          remove: '/a/<>/remove-item',
-          set_item: '/a/<>/set-item',
-          __content__: '<>',
+          add: '/a-b/__/add',
+          remove: '/a-b/__/remove-item',
+          set_item: '/a-b/__/set-item',
+          __content__: '__',
         },
       },
     },

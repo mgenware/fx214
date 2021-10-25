@@ -97,7 +97,7 @@ To replace underscores with hyphens, use `Option.underscoresToHyphens`:
 const urls = buildTree(
   {
     api: {
-      p: {
+      user_group: {
         add_user: 'add_user',
         // Falsy values are automatically filled with key names.
         remove_user: 0,
@@ -112,8 +112,8 @@ const urls = buildTree(
 {
   api: {
     p: {
-      add_user: '/api/p/add_user',
-      remove_user: '/api/p/remove_user',
+      add_user: '/api/user-group/add-user',
+      remove_user: '/api/user-group/remove-user',
     },
   },
 }

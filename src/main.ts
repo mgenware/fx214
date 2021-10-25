@@ -9,6 +9,13 @@ function isObject(val: unknown): boolean {
   return typeof val === 'object' && val !== null;
 }
 
+function handlePathComponent(s: string, underscoresToHyphens: boolean | undefined): string {
+  if (underscoresToHyphens) {
+    return s.replace(/_/g, '-');
+  }
+  return s;
+}
+
 function buildTreeCore(
   tree: Record<string, unknown>,
   prefix: string,
@@ -21,11 +28,14 @@ function buildTreeCore(
   for (const [key, val] of Object.entries(tree)) {
     if (isObject(val)) {
       const valAsObj = val as Record<string, unknown>;
-      res[key] = buildTreeCore(valAsObj, `${prefix}/${valAsObj[contentAttr] ?? key}`, opt);
+      res[key] = buildTreeCore(
+        valAsObj,
+        `${prefix}/${valAsObj[contentAttr] ?? handlePathComponent(key, opt.underscoresToHyphens)}`,
+        opt,
+      );
     } else if (key !== contentAttr && typeof val !== 'function') {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      const converted = `${prefix}/${val || key}`;
-      res[key] = opt.underscoresToHyphens ? converted.replace(/_/g, '-') : converted;
+      res[key] = `${prefix}/${handlePathComponent(`${val || key}`, opt.underscoresToHyphens)}`;
     } else {
       res[key] = val;
     }
