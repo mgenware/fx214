@@ -122,3 +122,31 @@ it('Autofill falsy values', () => {
     },
   );
 });
+
+it('opt.underscoresToHyphens', () => {
+  assert.deepStrictEqual(
+    buildTree(
+      {
+        a: {
+          forum: {
+            add: 'add',
+            remove: 'remove_item',
+            set_item: 0,
+            __content__: '<>',
+          },
+        },
+      },
+      { underscoresToHyphens: true },
+    ),
+    {
+      a: {
+        forum: {
+          add: '/a/<>/add',
+          remove: '/a/<>/remove-item',
+          set_item: '/a/<>/set-item',
+          __content__: '<>',
+        },
+      },
+    },
+  );
+});

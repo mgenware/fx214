@@ -83,8 +83,37 @@ const urls = buildTree({
 {
   api: {
     p: {
-      newComment: '/api/private/add',
-      newPost: '/api/private/remove',
+      newComment: '/api/p/add',
+      newPost: '/api/p/remove',
+    },
+  },
+}
+*/
+```
+
+To replace underscores with hyphens, use `Option.underscoresToHyphens`:
+
+```ts
+const urls = buildTree(
+  {
+    api: {
+      p: {
+        add_user: 'add_user',
+        // Falsy values are automatically filled with key names.
+        remove_user: 0,
+      },
+    },
+  },
+  { underscoresToHyphens: true },
+);
+
+// `urls` will be like:
+/**
+{
+  api: {
+    p: {
+      add_user: '/api/p/add_user',
+      remove_user: '/api/p/remove_user',
     },
   },
 }
