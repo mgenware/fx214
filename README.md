@@ -119,3 +119,31 @@ const urls = buildTree(
 }
 */
 ```
+
+Use `Option.prefix` to set a prefix on all resulting URLs:
+
+```ts
+const urls = buildTree(
+  {
+    api: {
+      user_group: {
+        add_user: 'add_user',
+        // Falsy values are automatically filled with key names.
+        remove_user: 0,
+      },
+    },
+  },
+  { prefix: 'https://www.mgenware.com' },
+);
+
+/**
+{
+  api: {
+    p: {
+      add_user: 'https://www.mgenware.com/api/user-group/add-user',
+      remove_user: 'https://www.mgenware.com/api/user-group/remove-user',
+    },
+  },
+}
+*/
+```

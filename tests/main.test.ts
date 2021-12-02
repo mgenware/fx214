@@ -152,3 +152,29 @@ it('opt.underscoresToHyphens', () => {
     },
   );
 });
+
+it('opt.prefix', () => {
+  assert.deepStrictEqual(
+    buildTree(
+      {
+        a: {
+          forum: {
+            add: 'add',
+            del: 'delete',
+            __content__: '<>',
+          },
+        },
+      },
+      { prefix: '->' },
+    ),
+    {
+      a: {
+        forum: {
+          add: '->/a/<>/add',
+          del: '->/a/<>/delete',
+          __content__: '<>',
+        },
+      },
+    },
+  );
+});

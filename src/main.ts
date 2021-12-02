@@ -3,6 +3,8 @@ const contentAttr = '__content__';
 export interface Options {
   // Replace underscores with hyphens.
   underscoresToHyphens?: boolean;
+  // Use this to add a prefix to all resulting URLs.
+  prefix?: string;
 }
 
 function isObject(val: unknown): boolean {
@@ -18,24 +20,28 @@ function handlePathComponent(s: string, underscoresToHyphens: boolean | undefine
 
 function buildTreeCore(
   tree: Record<string, unknown>,
-  prefix: string,
+  str: string,
   opt: Options,
 ): Record<string, unknown> {
   if (!isObject(tree)) {
     return tree;
   }
+  const prefix = opt.prefix ?? '';
   const res: Record<string, unknown> = {};
   for (const [key, val] of Object.entries(tree)) {
     if (isObject(val)) {
       const valAsObj = val as Record<string, unknown>;
       res[key] = buildTreeCore(
         valAsObj,
-        `${prefix}/${valAsObj[contentAttr] ?? handlePathComponent(key, opt.underscoresToHyphens)}`,
+        `${str}/${valAsObj[contentAttr] ?? handlePathComponent(key, opt.underscoresToHyphens)}`,
         opt,
       );
     } else if (key !== contentAttr && typeof val !== 'function') {
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      res[key] = `${prefix}/${handlePathComponent(`${val || key}`, opt.underscoresToHyphens)}`;
+      res[key] = `${prefix}${str}/${handlePathComponent(
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        `${val || key}`,
+        opt.underscoresToHyphens,
+      )}`;
     } else {
       res[key] = val;
     }
