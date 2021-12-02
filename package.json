@@ -1,6 +1,6 @@
 {
   "name": "fx214",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Hierarchical URL constants in less code",
   "type": "module",
   "exports": "./dist/main.js",
