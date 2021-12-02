@@ -10,7 +10,7 @@ Hierarchical URL constants in less code.
 ## Installation
 
 ```sh
-yarn add fx214
+npm i fx214
 ```
 
 ## Usage
