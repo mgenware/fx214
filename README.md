@@ -83,8 +83,8 @@ const urls = buildTree({
 {
   api: {
     p: {
-      newComment: '/api/p/add',
-      newPost: '/api/p/remove',
+      add: '/api/p/add',
+      remove: '/api/p/remove',
     },
   },
 }
